@@ -1,0 +1,33 @@
+{
+  "name": "paperwork-pal",
+  "version": "1.0.0",
+  "description": "Immigration and tax deadline tracker and community tips board for international students in the US.",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.js",
+    "dev": "node --env-file-if-exists=.env --watch server.js",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashwin-bhat-neu/paperwork-pal.git"
+  },
+  "author": "Ashwin Bhat and Mohammed Sameer Sarfaraz Bake",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "express": "^5.3.0",
+    "mongodb": "^7.7.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.13.0",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.10"
+  }
+}
