@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 240" width="360" height="240">
+  <defs>
+    <pattern id="calendar-day" x="16" y="58" width="48" height="44" patternUnits="userSpaceOnUse">
+      <rect width="40" height="36" rx="6" fill="#eef1f6" />
+    </pattern>
+  </defs>
+  <rect x="0.5" y="0.5" width="359" height="239" rx="10" fill="#ffffff" stroke="#dde3ec" />
+  <path d="M0 10a10 10 0 0 1 10-10h340a10 10 0 0 1 10 10v34H0z" fill="#2f6fde" />
+  <rect x="16" y="58" width="328" height="168" fill="url(#calendar-day)" />
+  <rect x="304" y="102" width="40" height="36" rx="6" fill="#d93b3b" />
+  <rect x="16" y="190" width="40" height="36" rx="6" fill="#e8960c" />
+</svg>

@@ -1,0 +1,65 @@
+:root {
+  --color-page: #f4f6fa;
+  --color-surface: #ffffff;
+  --color-navy: #1f3a5f;
+  --color-on-dark: #ffffff;
+  --color-on-dark-muted: #c8d4e6;
+  --color-gold: #f5b942;
+  --color-blue: #2f6fde;
+  --color-blue-dark: #2459bb;
+  --color-blue-tint: #e8f0fd;
+  --color-text: #1f2a37;
+  --color-text-secondary: #5b6575;
+  --color-border: #dde3ec;
+  --color-border-strong: #cfd6e2;
+  --color-red: #d93b3b;
+  --color-red-tint: #fde8e8;
+  --color-amber: #e8960c;
+  --color-amber-tint: #fff3dc;
+  --color-amber-text: #a86400;
+  --radius-small: 6px;
+  --radius-medium: 10px;
+  --page-max-width: 72rem;
+  --page-gutter: 1.5rem;
+
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-page);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.page-width {
+  width: min(100% - 2 * var(--page-gutter), var(--page-max-width));
+  margin-inline: auto;
+}

@@ -1,0 +1,39 @@
+.hero {
+  padding-block: 4rem;
+  background: var(--color-blue-tint);
+}
+
+.hero__layout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.hero__text {
+  flex: 1 1 28rem;
+  max-width: 44rem;
+}
+
+.hero__title {
+  font-size: clamp(2rem, 3vw + 1rem, 2.75rem);
+  line-height: 1.15;
+}
+
+.hero__subtitle {
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.hero__illustration {
+  flex: 0 1 22.5rem;
+}
