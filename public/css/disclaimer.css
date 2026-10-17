@@ -1,0 +1,7 @@
+.disclaimer {
+  margin-block: 1.5rem 3rem;
+  padding: 1rem 1.5rem;
+  border-left: 6px solid var(--color-amber);
+  border-radius: var(--radius-small);
+  background: var(--color-amber-tint);
+}
