@@ -2,6 +2,8 @@
 
 Immigration and tax deadline tracker and community tips board for international students in the US.
 
+See the [design document](docs/design-document.md) for personas, user stories, and mockups.
+
 ## Running locally
 
 Requires Node.js 22 or newer and a MongoDB connection string (a free MongoDB Atlas cluster works).
