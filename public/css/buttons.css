@@ -30,3 +30,23 @@
 .button--secondary:hover {
   background: var(--color-page);
 }
+
+.button--danger {
+  background: var(--color-red-tint);
+  color: var(--color-red);
+}
+
+.button--danger:hover {
+  background: var(--color-red-tint-strong);
+}
+
+.button--small {
+  min-height: 2.25rem;
+  padding: 0.25rem 0.875rem;
+  font-size: 0.875rem;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
