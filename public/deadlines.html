@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My Deadlines · Paperwork Pal</title>
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/navigationBar.css" />
+    <link rel="stylesheet" href="/css/buttons.css" />
+    <link rel="stylesheet" href="/css/forms.css" />
+    <link rel="stylesheet" href="/css/alert.css" />
+    <link rel="stylesheet" href="/css/deadlines/deadlinesPage.css" />
+    <link rel="stylesheet" href="/css/deadlines/deadlineCard.css" />
+    <link rel="stylesheet" href="/css/deadlines/deadlineForm.css" />
+    <script type="module" src="/js/deadlines/deadlinesPage.js"></script>
+  </head>
+  <body>
+    <header class="navigation-bar">
+      <a class="navigation-bar__brand" href="/">Paperwork Pal</a>
+      <nav aria-label="Main">
+        <ul class="navigation-bar__links">
+          <li><a class="navigation-bar__link" href="/">Home</a></li>
+          <li>
+            <a
+              class="navigation-bar__link"
+              href="/deadlines.html"
+              aria-current="page"
+            >
+              My Deadlines
+            </a>
+          </li>
+          <li><a class="navigation-bar__link" href="/tips.html">Tips</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="deadlines-page page-width">
+      <section class="deadlines-page__list" aria-labelledby="deadlines-title">
+        <h1 class="deadlines-page__title" id="deadlines-title">My Deadlines</h1>
+        <ul
+          class="deadline-summary"
+          id="deadline-summary"
+          aria-label="Summary"
+        ></ul>
+        <p class="alert" id="deadlines-error" role="alert" hidden></p>
+        <p class="deadlines-page__loading" id="deadlines-loading">
+          Loading your deadlines…
+        </p>
+        <div class="deadlines-empty" id="deadlines-empty" hidden>
+          <h2 class="deadlines-empty__title">No deadlines yet</h2>
+          <p>Add your first one using the form.</p>
+        </div>
+        <ul class="deadline-list" id="deadline-list"></ul>
+      </section>
+
+      <section
+        class="deadline-form-panel"
+        aria-labelledby="deadline-form-title"
+      >
+        <form class="deadline-form" id="deadline-form">
+          <h2 class="deadline-form__title" id="deadline-form-title">
+            Add a deadline
+          </h2>
+          <label class="form-field">
+            <span class="form-field__label">Document type</span>
+            <select class="form-control" name="documentType" required>
+              <option value="" disabled selected>Choose a document</option>
+              <option>OPT application</option>
+              <option>STEM OPT extension</option>
+              <option>I-20 travel signature</option>
+              <option>Form 8843</option>
+              <option>Federal tax return</option>
+              <option>State tax return</option>
+              <option>Visa renewal</option>
+              <option>SEVP address update</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label class="form-field">
+            <span class="form-field__label">Due date</span>
+            <input
+              class="form-control"
+              type="date"
+              name="dueDate"
+              min="2000-01-01"
+              max="2100-12-31"
+              required
+            />
+          </label>
+          <label class="form-field">
+            <span class="form-field__label">Notes</span>
+            <textarea
+              class="form-control"
+              name="notes"
+              rows="4"
+              maxlength="500"
+              placeholder="Optional"
+            ></textarea>
+          </label>
+          <p class="alert deadline-form__error" role="alert" hidden></p>
+          <div class="deadline-form__actions">
+            <button class="button button--primary" type="submit">
+              Add deadline
+            </button>
+            <button
+              class="button button--secondary deadline-form__cancel"
+              type="button"
+              hidden
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

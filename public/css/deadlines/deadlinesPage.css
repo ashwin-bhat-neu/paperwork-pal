@@ -1,0 +1,76 @@
+.deadlines-page {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+  padding-block: 2.5rem 4rem;
+}
+
+@media (min-width: 56rem) {
+  .deadlines-page {
+    grid-template-columns: minmax(0, 1fr) 22rem;
+  }
+}
+
+/* On narrow screens the form comes first so adding a deadline needs no scrolling. */
+@media (max-width: 55.99rem) {
+  .deadline-form-panel {
+    order: -1;
+  }
+}
+
+.deadlines-page__list {
+  display: grid;
+  gap: 1rem;
+}
+
+.deadlines-page__title {
+  font-size: 1.875rem;
+}
+
+.deadlines-page__loading {
+  color: var(--color-text-secondary);
+}
+
+.deadline-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.deadline-summary:empty {
+  display: none;
+}
+
+.summary-pill {
+  padding: 0.125rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.summary-pill--overdue {
+  background: var(--color-red-tint);
+  color: var(--color-red);
+}
+
+.summary-pill--soon {
+  background: var(--color-amber-tint);
+  color: var(--color-amber-text);
+}
+
+.deadlines-empty {
+  padding: 4rem 1.5rem;
+  border: 2px dashed var(--color-border-strong);
+  border-radius: var(--radius-medium);
+  background: var(--color-surface);
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.deadlines-empty__title {
+  font-size: 1.375rem;
+  color: var(--color-text);
+}

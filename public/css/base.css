@@ -14,6 +14,9 @@
   --color-border-strong: #cfd6e2;
   --color-red: #d93b3b;
   --color-red-tint: #fde8e8;
+  --color-red-tint-strong: #fad1d1;
+  --color-red-text: #a82424;
+  --color-muted: #a0a7b4;
   --color-amber: #e8960c;
   --color-amber-tint: #fff3dc;
   --color-amber-text: #a86400;
@@ -46,6 +49,11 @@ h2,
 h3,
 p {
   margin: 0;
+}
+
+/* Component display rules (e.g. .button's inline-flex) would otherwise override the hidden attribute. */
+[hidden] {
+  display: none !important;
 }
 
 img {
