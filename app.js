@@ -5,6 +5,7 @@ import {
   handleUnexpectedError,
   handleUnknownApiRoute,
 } from "./middleware/errorHandlers.js";
+import deadlinesRouter from "./routes/deadlines.js";
 
 const app = express();
 
@@ -17,6 +18,8 @@ app.get("/api/health", async (request, response) => {
   await database.command({ ping: 1 });
   response.json({ status: "ok" });
 });
+
+app.use("/api/deadlines", deadlinesRouter);
 
 app.use("/api", handleUnknownApiRoute);
 app.use(handleUnexpectedError);
