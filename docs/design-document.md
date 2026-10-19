@@ -83,13 +83,33 @@ After she mails Form 8843, Mei changes its status from "Not started" to "Submitt
 
 > As Arjun, I want to post a tip about a specific process, so newer students can avoid my mistakes.
 
+Arjun remembers waiting too long to request his OPT recommendation and nearly missing his filing window. He opens **Tips**, picks "OPT" from the process list, titles his tip "Ask for your DSO recommendation early", and explains what happened and what he would do differently. The tip appears at the top of the list right away, without a page reload, labeled "Unverified" and "Your tip".
+
+- Process comes from a fixed list (OPT, STEM OPT, I-20 and travel, Taxes, Visa, Other).
+- Title (up to 120 characters) and tip text (up to 2,000 characters) are both required. Text that is only spaces is rejected.
+- The tip is stored under Arjun's anonymous ID. That ID is never sent to other people's browsers.
+- The form reminds authors that tips are public and to leave out personal details like a SEVIS ID or address.
+
 #### 5. Browse and filter tips
 
 > As Mei, I want to browse and filter tips by process (OPT, I-20, taxes), so I can find advice relevant to what I'm doing now.
 
+Mei is about to file her first US tax return. She opens **Tips** and clicks the "Taxes" filter, and the list narrows to tax tips, newest first. One warns her not to use regular tax software as a nonresident, and another reminds her to check her pay stub for Social Security and Medicare. Every card is labeled "Unverified", and a notice at the top says tips are not legal advice, so she knows to confirm with her DSO.
+
+- Anyone can read tips. No owner ID is needed.
+- Filter buttons offer "All" plus each process. Filtering happens on the server with `?process=`, and an unknown process is rejected.
+- Tips are sorted newest first. Each card shows its process, the "Unverified" label, and the date it was posted.
+
 #### 6. Edit or delete my own tips
 
 > As Arjun, I want to edit or delete my own tips, so I can fix or remove outdated advice.
+
+A newer student points out that Arjun's tip gives the wrong number of days. He finds it on the board, where his own tips are marked "Your tip" and show **Edit** and **Delete**. He clicks **Edit**, the tip loads into the form and its card is highlighted, and he corrects the number and saves. The card now shows when it was edited. Later he deletes a tip he posted twice, after confirming.
+
+- **Edit** and **Delete** appear only on the viewer's own tips.
+- The server checks the owner on every edit and delete. A request for someone else's tip gets a 404, the same as a tip that doesn't exist.
+- The API sends each tip with an `isMine` flag instead of its `ownerId`, so nobody can copy another author's ID to edit their tips.
+- **Delete** asks for confirmation first.
 
 ## Data model
 
@@ -108,6 +128,20 @@ After she mails Form 8843, Mei changes its status from "Not started" to "Submitt
 
 Indexed on `{ ownerId: 1, dueDate: 1 }`, which serves the sorted list query.
 
+### `tips`
+
+| Field       | Type     | Notes                                                      |
+| ----------- | -------- | ---------------------------------------------------------- |
+| `_id`       | ObjectId |                                                            |
+| `ownerId`   | string   | Anonymous browser ID of the author, never sent to browsers |
+| `process`   | string   | One of the fixed processes                                 |
+| `title`     | string   | Up to 120 characters                                       |
+| `body`      | string   | The tip itself, up to 2,000 characters                     |
+| `createdAt` | Date     |                                                            |
+| `updatedAt` | Date     | Shown as the edited date when it differs from `createdAt`  |
+
+Indexed on `{ createdAt: -1 }`, which serves the full board, and on `{ process: 1, createdAt: -1 }`, which serves the board filtered by process.
+
 ### Deadlines API
 
 All routes require the `X-Owner-Id` header and only touch that owner's deadlines.
@@ -118,6 +152,17 @@ All routes require the `X-Owner-Id` header and only touch that owner's deadlines
 | `POST`   | `/api/deadlines`     | Create a deadline                 |
 | `PATCH`  | `/api/deadlines/:id` | Update status or any other field  |
 | `DELETE` | `/api/deadlines/:id` | Delete a deadline                 |
+
+### Tips API
+
+Reading is public. Creating, editing, and deleting require the `X-Owner-Id` header, and editing and deleting only work on the sender's own tips. Every tip is returned with `isMine` instead of `ownerId`.
+
+| Method   | Route           | Purpose                                          |
+| -------- | --------------- | ------------------------------------------------ |
+| `GET`    | `/api/tips`     | List tips newest first; `?process=` filters them |
+| `POST`   | `/api/tips`     | Create a tip                                     |
+| `PATCH`  | `/api/tips/:id` | Edit your own tip                                |
+| `DELETE` | `/api/tips/:id` | Delete your own tip                              |
 
 ## Design mockups
 
@@ -140,3 +185,23 @@ All routes require the `X-Owner-Id` header and only touch that owner's deadlines
 ### Deleting a deadline
 
 ![Delete confirmation](../assets/images/delete.png)
+
+### Tips
+
+![Tips page](../assets/images/tips.png)
+
+### Filtering tips by process
+
+![Tips filtered by process](../assets/images/tips-filtered.png)
+
+### Editing a tip
+
+![Editing a tip](../assets/images/tips-editing.png)
+
+### No tips yet
+
+![Empty tips list](../assets/images/tips-empty.png)
+
+### Deleting a tip
+
+![Tip delete confirmation](../assets/images/tips-delete.png)
