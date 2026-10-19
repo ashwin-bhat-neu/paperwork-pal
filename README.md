@@ -124,6 +124,11 @@ docs/                    Design document
 assets/images/           Mockups and screenshots
 ```
 
+## Links
+
+- [**Presentation**](https://docs.google.com/presentation/d/1im1jbD9trbgO_R3PYH8rqg6WvK-EwSpfMi89PGOvxgw/edit?usp=sharing)
+- [**Presentation Video**](https://youtu.be/1b2mPO3TsP8)
+
 ## License
 
 [MIT](LICENSE)
