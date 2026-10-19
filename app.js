@@ -12,6 +12,10 @@ const app = express();
 app.use(express.json());
 // Vercel ignores this and serves public/ from its CDN; it is for local runs.
 app.use(express.static(path.join(import.meta.dirname, "public")));
+// Vercel's CDN serves public/ files only by exact path, so "/" falls through to Express there.
+app.get("/", (request, response) => {
+  response.redirect("/index.html");
+});
 
 app.get("/api/health", async (request, response) => {
   const database = await getDatabase();
