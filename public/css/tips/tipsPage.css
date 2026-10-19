@@ -1,0 +1,74 @@
+.tips-page {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+  padding-block: 2.5rem 4rem;
+}
+
+@media (min-width: 56rem) {
+  .tips-page {
+    grid-template-columns: minmax(0, 1fr) 22rem;
+  }
+}
+
+.tips-page__list {
+  display: grid;
+  gap: 1rem;
+}
+
+.tips-page__title {
+  font-size: 1.875rem;
+}
+
+.tips-page__intro,
+.tips-page__loading {
+  color: var(--color-text-secondary);
+}
+
+/* The list's grid gap already spaces the disclaimer; its home-page margins would double it. */
+.tips-page__list > .disclaimer {
+  margin-block: 0;
+}
+
+.tip-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tip-filter__option {
+  padding: 0.25rem 0.875rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  background: var(--color-surface);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.tip-filter__option:hover {
+  border-color: var(--color-blue);
+  color: var(--color-blue-dark);
+}
+
+.tip-filter__option[aria-pressed="true"] {
+  border-color: var(--color-blue);
+  background: var(--color-blue);
+  color: var(--color-on-dark);
+}
+
+.tips-empty {
+  padding: 4rem 1.5rem;
+  border: 2px dashed var(--color-border-strong);
+  border-radius: var(--radius-medium);
+  background: var(--color-surface);
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.tips-empty__title {
+  font-size: 1.375rem;
+  color: var(--color-text);
+}

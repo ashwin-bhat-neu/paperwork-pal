@@ -1,0 +1,107 @@
+.tip-list {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tip-card {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+  background: var(--color-surface);
+}
+
+.tip-card--editing {
+  outline: 2px solid var(--color-blue);
+  background: var(--color-blue-tint);
+}
+
+.tip-card__labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.tip-card__process,
+.tip-card__unverified,
+.tip-card__mine {
+  padding: 0.125rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.tip-card__process {
+  background: var(--color-blue-tint);
+  color: var(--color-blue-dark);
+}
+
+/* Amber matches the "Not legal advice" disclaimer, so the two read as one warning. */
+.tip-card__unverified {
+  background: var(--color-amber-tint);
+  color: var(--color-amber-text);
+}
+
+.tip-card__mine {
+  background: var(--color-navy);
+  color: var(--color-on-dark);
+}
+
+.tip-card__title {
+  font-size: 1.1875rem;
+  overflow-wrap: anywhere;
+}
+
+/* pre-line keeps the line breaks the author typed. */
+.tip-card__body {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.tip-card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.tip-card__date {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+}
+
+.tip-card__actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.tip-card__action {
+  padding: 0.25rem 0.625rem;
+  border: none;
+  border-radius: var(--radius-small);
+  background: transparent;
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-blue);
+  cursor: pointer;
+}
+
+.tip-card__action:hover {
+  background: var(--color-blue-tint);
+}
+
+.tip-card__action--danger {
+  color: var(--color-red-text);
+}
+
+.tip-card__action--danger:hover {
+  background: var(--color-red-tint);
+}

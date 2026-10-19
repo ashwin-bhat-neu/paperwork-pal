@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tips · Paperwork Pal</title>
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/navigationBar.css" />
+    <link rel="stylesheet" href="/css/buttons.css" />
+    <link rel="stylesheet" href="/css/forms.css" />
+    <link rel="stylesheet" href="/css/alert.css" />
+    <link rel="stylesheet" href="/css/disclaimer.css" />
+    <link rel="stylesheet" href="/css/tips/tipsPage.css" />
+    <link rel="stylesheet" href="/css/tips/tipCard.css" />
+    <link rel="stylesheet" href="/css/tips/tipForm.css" />
+    <script type="module" src="/js/tips/tipsPage.js"></script>
+  </head>
+  <body>
+    <header class="navigation-bar">
+      <a class="navigation-bar__brand" href="/">Paperwork Pal</a>
+      <nav aria-label="Main">
+        <ul class="navigation-bar__links">
+          <li><a class="navigation-bar__link" href="/">Home</a></li>
+          <li>
+            <a class="navigation-bar__link" href="/deadlines.html">
+              My Deadlines
+            </a>
+          </li>
+          <li>
+            <a
+              class="navigation-bar__link"
+              href="/tips.html"
+              aria-current="page"
+            >
+              Tips
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="tips-page page-width">
+      <section class="tips-page__list" aria-labelledby="tips-title">
+        <h1 class="tips-page__title" id="tips-title">Tips</h1>
+        <p class="tips-page__intro">
+          What students wish they had known about each process.
+        </p>
+        <p class="disclaimer">
+          <strong>Not legal advice.</strong>
+          Tips are shared by students and are unverified. Always confirm with
+          your DSO or a tax professional.
+        </p>
+
+        <div
+          class="tip-filter"
+          role="group"
+          aria-label="Filter tips by process"
+        >
+          <button
+            class="tip-filter__option"
+            type="button"
+            data-process=""
+            aria-pressed="true"
+          >
+            All
+          </button>
+          <button
+            class="tip-filter__option"
+            type="button"
+            data-process="OPT"
+            aria-pressed="false"
+          >
+            OPT
+          </button>
+          <button
+            class="tip-filter__option"
+            type="button"
+            data-process="STEM OPT"
+            aria-pressed="false"
+          >
+            STEM OPT
+          </button>
+          <button
+            class="tip-filter__option"
+            type="button"
+            data-process="I-20 and travel"
+            aria-pressed="false"
+          >
+            I-20 and travel
+          </button>
+          <button
+            class="tip-filter__option"
+            type="button"
+            data-process="Taxes"
+            aria-pressed="false"
+          >
+            Taxes
+          </button>
+          <button
+            class="tip-filter__option"
+            type="button"
+            data-process="Visa"
+            aria-pressed="false"
+          >
+            Visa
+          </button>
+          <button
+            class="tip-filter__option"
+            type="button"
+            data-process="Other"
+            aria-pressed="false"
+          >
+            Other
+          </button>
+        </div>
+
+        <p class="alert" id="tips-error" role="alert" hidden></p>
+        <p class="tips-page__loading" id="tips-loading">Loading tips…</p>
+        <div class="tips-empty" id="tips-empty" hidden>
+          <h2 class="tips-empty__title" id="tips-empty-title">No tips yet</h2>
+          <p>Share the first one using the form.</p>
+        </div>
+        <ul class="tip-list" id="tip-list"></ul>
+      </section>
+
+      <section class="tip-form-panel" aria-labelledby="tip-form-title">
+        <form class="tip-form" id="tip-form">
+          <h2 class="tip-form__title" id="tip-form-title">Share a tip</h2>
+          <label class="form-field">
+            <span class="form-field__label">Process</span>
+            <select class="form-control" name="process" required>
+              <option value="" disabled selected>Choose a process</option>
+              <option>OPT</option>
+              <option>STEM OPT</option>
+              <option>I-20 and travel</option>
+              <option>Taxes</option>
+              <option>Visa</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label class="form-field">
+            <span class="form-field__label">Title</span>
+            <input
+              class="form-control"
+              type="text"
+              name="title"
+              maxlength="120"
+              placeholder="e.g. Request your DSO recommendation early"
+              required
+            />
+          </label>
+          <label class="form-field">
+            <span class="form-field__label">Your tip</span>
+            <textarea
+              class="form-control"
+              name="body"
+              rows="6"
+              maxlength="2000"
+              placeholder="What happened, and what would you do differently?"
+              required
+            ></textarea>
+          </label>
+          <p class="tip-form__hint">
+            Anyone can read tips. Leave out personal details like your SEVIS ID
+            or address.
+          </p>
+          <p class="alert tip-form__error" role="alert" hidden></p>
+          <div class="tip-form__actions">
+            <button class="button button--primary" type="submit">
+              Post tip
+            </button>
+            <button
+              class="button button--secondary tip-form__cancel"
+              type="button"
+              hidden
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
