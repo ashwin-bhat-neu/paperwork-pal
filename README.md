@@ -6,6 +6,8 @@ A deadline tracker and community tips board for international students in the US
 
 ![My Deadlines page with overdue, upcoming, and submitted deadlines](assets/images/screenshot.png)
 
+![Tips board with process filters and tips labeled unverified](assets/images/tips.png)
+
 ## Authors
 
 - **Ashwin Bhat** ([@ashwin-bhat-neu](https://github.com/ashwin-bhat-neu)): My Deadlines (`deadlines` collection, API, and page)
@@ -26,10 +28,18 @@ Tips are labeled unverified and are not legal advice. The [design document](docs
 
 ## How to use it
 
+### My Deadlines
+
 1. Open **My Deadlines** and fill in the form: document type, due date, and any notes.
 2. Deadlines are listed soonest first with the days left. Overdue deadlines are red, deadlines due within a week are amber, and the counts appear at the top.
 3. Change a deadline's status from its dropdown as you file. **Edit** loads it into the form; **Delete** asks for confirmation first.
-4. Open **Tips** to browse advice by process or share your own.
+
+### Tips
+
+1. Open **Tips** to see what other students have shared, newest first.
+2. Click a process (OPT, STEM OPT, I-20 and travel, Taxes, Visa, Other) to see only its tips, or **All** to see everything.
+3. To share your own, pick a process, add a title and your tip, and click **Post tip**.
+4. Your own tips are marked **Your tip**. **Edit** loads one into the form; **Delete** asks for confirmation first. You can't change anyone else's tips.
 
 There are no accounts. The browser creates an anonymous ID on first visit, so your deadlines and tips are tied to that browser.
 
@@ -51,6 +61,7 @@ cd paperwork-pal
 npm install
 cp .env.example .env      # then set MONGODB_URI to your connection string
 npm run seed:deadlines    # optional: adds 1,200+ sample deadlines and the database index
+npm run seed:tips         # optional: adds about 1,000 sample tips and the database indexes
 npm run dev
 ```
 
@@ -61,6 +72,7 @@ The app runs at http://localhost:3000, and http://localhost:3000/api/health retu
 | `npm run dev`            | Starts the server and restarts it on file changes |
 | `npm start`              | Starts the server                                 |
 | `npm run seed:deadlines` | Replaces the sample deadlines (safe to run again) |
+| `npm run seed:tips`      | Replaces the sample tips (safe to run again)      |
 | `npm test`               | Runs the unit tests                               |
 | `npm run lint`           | Runs ESLint                                       |
 | `npm run format`         | Formats every file with Prettier                  |
@@ -84,22 +96,32 @@ Every deadlines route requires an `X-Owner-Id` header and only reads or changes 
 | `DELETE` | `/api/deadlines/:id` | Delete a deadline                    |
 | `GET`    | `/api/health`        | Check that the database is reachable |
 
+Reading tips is public. Creating, editing, and deleting require an `X-Owner-Id` header, and editing and deleting only work on that owner's own tips. Each tip is returned with an `isMine` flag instead of its author's ID.
+
+| Method   | Route           | Purpose                                                   |
+| -------- | --------------- | --------------------------------------------------------- |
+| `GET`    | `/api/tips`     | List tips newest first; `?process=OPT` filters by process |
+| `POST`   | `/api/tips`     | Create a tip                                              |
+| `PATCH`  | `/api/tips/:id` | Edit your own tip                                         |
+| `DELETE` | `/api/tips/:id` | Delete your own tip                                       |
+
 ## Project structure
 
 ```
 app.js, server.js        Express app (exported for Vercel) and local server
 db/                      MongoDB connection and collection queries
 routes/                  Express routers
-middleware/              Owner ID check and JSON error handlers
+middleware/              Owner ID checks and JSON error handlers
 validation/              Request validation, independent of the database
 scripts/                 Seed data generation
 public/                  Static pages, images, and browser code
   css/                   One stylesheet per component, grouped by page
   js/shared/             Owner ID, fetch wrapper, and DOM helper
   js/deadlines/          My Deadlines page modules
+  js/tips/               Tips page modules
 test/                    Unit tests, mirroring the source folders
 docs/                    Design document
-assets/images/           Mockups and screenshot
+assets/images/           Mockups and screenshots
 ```
 
 ## License
