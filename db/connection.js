@@ -21,3 +21,13 @@ export async function getDatabase() {
   const client = await connectedClientPromise;
   return client.db(DATABASE_NAME);
 }
+
+// Only scripts need this; the server keeps its connection for its whole lifetime.
+export async function closeDatabaseConnection() {
+  if (!connectedClientPromise) {
+    return;
+  }
+  const client = await connectedClientPromise;
+  connectedClientPromise = undefined;
+  await client.close();
+}
