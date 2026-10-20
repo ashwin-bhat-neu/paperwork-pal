@@ -14,3 +14,10 @@ export function requireOwnerId(request, response, next) {
   request.ownerId = ownerId;
   next();
 }
+
+// For public routes: uses the owner ID if a valid one is sent, but never rejects the request.
+export function readOwnerId(request, response, next) {
+  const ownerId = request.get(OWNER_ID_HEADER);
+  request.ownerId = ownerId && OWNER_ID_PATTERN.test(ownerId) ? ownerId : null;
+  next();
+}

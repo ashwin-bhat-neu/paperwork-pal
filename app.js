@@ -6,6 +6,7 @@ import {
   handleUnknownApiRoute,
 } from "./middleware/errorHandlers.js";
 import deadlinesRouter from "./routes/deadlines.js";
+import tipsRouter from "./routes/tips.js";
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.get("/api/health", async (request, response) => {
 });
 
 app.use("/api/deadlines", deadlinesRouter);
+app.use("/api/tips", tipsRouter);
 
 app.use("/api", handleUnknownApiRoute);
 app.use(handleUnexpectedError);
